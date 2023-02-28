@@ -14,4 +14,5 @@ public interface CalcOperations
   float div (float a, float b) throws CalcApp.CalcPackage.DivisionByZero;
   float mul (float a, float b);
   float sub (float a, float b);
+  float decimalABinario(float a);
 } // interface CalcOperations
