@@ -21,12 +21,14 @@ public class CalcClient {
         try {
             // create and initialize the ORB
             ORB orb = ORB.init(args, null);
+            //Se crea el ORB que sea eñ encargado de realizar las invocaciones a los metodos remotos
 
             // get the root naming context
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
             // Use NamingContextExt instead of NamingContext. This is
             // part of the Interoperable naming Service.
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+            //Se hace referencia al objeto que vamos a invocar. Sin esta referencia no se podria acceder a un metodo remoto
 
             // resolve the Object Reference in Naming
             String name = "Calc";
@@ -40,12 +42,12 @@ public class CalcClient {
                 out.println("2. Sub");
                 out.println("3. Mul");
                 out.println("4. Div");
-                out.println("5. decimalABinario");
+                out.println("5. decimalABinario"); //Anadimos un estado más para que se pueda acceder a la nueva operacion
                 out.println("6. exit");
                 out.println("--");
                 out.println("choice: ");
 
-                try {
+                try { //Se implementan las operaciones que realiza la calculadora
                     String opt = br.readLine();
                     if (opt.equals("6")) {
                         break;
@@ -62,7 +64,7 @@ public class CalcClient {
                             out.println("Division by zero!!!");
                         }
                     }
-                    else if(opt.equals("5")){
+                    else if(opt.equals("5")){ //Lo que se imprimira al realizar la nueva operacion
                        out.println("El numero en binario es: "+ calcImpl.decimalABinario(getFloat("a")));
                     }
                 } catch (Exception e) {
