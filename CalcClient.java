@@ -40,13 +40,14 @@ public class CalcClient {
                 out.println("2. Sub");
                 out.println("3. Mul");
                 out.println("4. Div");
-                out.println("5. exit");
+                out.println("5. decimalABinario");
+                out.println("6. exit");
                 out.println("--");
                 out.println("choice: ");
 
                 try {
                     String opt = br.readLine();
-                    if (opt.equals("5")) {
+                    if (opt.equals("6")) {
                         break;
                     } else if (opt.equals("1")) {
                         out.println("a+b= " + calcImpl.sum(getFloat("a"), getFloat("b")));
@@ -60,6 +61,9 @@ public class CalcClient {
                         } catch (DivisionByZero de) {
                             out.println("Division by zero!!!");
                         }
+                    }
+                    else if(opt.equals("5")){
+                       pot.ptintln("El numero en decimal es: "+ calcImpl.decimalABinario(getFloat("a")));
                     }
                 } catch (Exception e) {
                     out.println("===");
