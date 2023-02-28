@@ -63,7 +63,7 @@ public class CalcClient {
                         }
                     }
                     else if(opt.equals("5")){
-                       pot.ptintln("El numero en decimal es: "+ calcImpl.decimalABinario(getFloat("a")));
+                       out.println("El numero en decimal es: "+ calcImpl.decimalABinario(getFloat("a")));
                     }
                 } catch (Exception e) {
                     out.println("===");
