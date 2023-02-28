@@ -21,6 +21,7 @@ public abstract class CalcPOA extends org.omg.PortableServer.Servant
     _methods.put ("div", new java.lang.Integer (1));
     _methods.put ("mul", new java.lang.Integer (2));
     _methods.put ("sub", new java.lang.Integer (3));
+    _methods.put("decimalABinario", new java.lang.Integer(4));
   }
 
   public org.omg.CORBA.portable.OutputStream _invoke (String $method,
@@ -81,6 +82,16 @@ public abstract class CalcPOA extends org.omg.PortableServer.Servant
          out = $rh.createReply();
          out.write_float ($result);
          break;
+       }
+       
+       case 4:
+       {
+        float a = in.read_float();
+        float $result = (float)0;
+        $result = this.decimalABinario (a);
+        out = $rh.createReply();
+        out.write_float ($result);
+        break;
        }
 
        default:
