@@ -36,11 +36,12 @@ class CalcImpl extends CalcPOA { //Se implementan las distintas operaciones que 
     }
     
     @Override
+    //Implementamos la nueva operacion
     public float decimalABinario(float a){ //He anadido la funcionalidad de pasar un numero decimal a binario
-        Integer decimalInteger = Math.round(a);
-        String resultado = Integer.toBinaryString(decimalInteger);
-        Float resultadoFloat = Float.valueOf(resultado);
-        return resultadoFloat;
+        Integer decimalInteger = Math.round(a); //Convertimos el float que entra por parametro en un entero
+        String resultado = Integer.toBinaryString(decimalInteger); //Mediante esta fucnion se convierte el entero a binario, pero se queda en formato string
+        Float resultadoFloat = Float.valueOf(resultado); //Convertimos el string a float
+        return resultadoFloat; //Se devuelve el resultado
     }
     
     private ORB orb;
@@ -55,6 +56,7 @@ public class CalcServer {
     public static void main(String args[]) {
         try {
             // create and initialize the ORB
+            //Inicializamos el ORB que permitira que los clientes llamen a nuestra funciones
             ORB orb = ORB.init(args, null);
 
             // get reference to rootpoa & activate the POAManager
@@ -66,12 +68,13 @@ public class CalcServer {
             helloImpl.setORB(orb);
 
             // get object reference from the servant
+            //Se obtiene la referencia al objeto
             org.omg.CORBA.Object ref = rootpoa.servant_to_reference(helloImpl);
             Calc href = CalcHelper.narrow(ref);
 
             // get the root naming context
             // NameService invokes the name service
-            org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+            org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService"); //Invocamos el nombre del servicio que deseamos
             // Use NamingContextExt which is part of the Interoperable
             // Naming Service (INS) specification.
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
@@ -81,10 +84,11 @@ public class CalcServer {
             NameComponent path[] = ncRef.to_name(name);
             ncRef.rebind(path, href);
 
+            //El servidor ya está listo y espera a que los clientes hagn llamdas a sus metodos
             System.out.println("Ready..");
 
             // wait for invocations from clients
-            orb.run();
+            orb.run(); //El servidor se mantiene abierto y a la espera
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
             e.printStackTrace(System.out);
