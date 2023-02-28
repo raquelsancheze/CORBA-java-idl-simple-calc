@@ -1,6 +1,6 @@
 module CalcApp
 {
-	interface Calc
+	interface Calc //Interfaz de comunicacion entre cliente y servidor
 	{
 		exception DivisionByZero {};
 
@@ -8,6 +8,6 @@ module CalcApp
 		float div(in float a, in float b) raises (DivisionByZero);
 		float mul(in float a, in float b);
 		float sub(in float a, in float b);
-		float decimalABinario(in float a);
+		float decimalABinario(in float a); //Se ha anadido la nueva funcionalidad
 	};
 };
