@@ -97,6 +97,25 @@ public class _CalcStub extends org.omg.CORBA.portable.ObjectImpl implements Calc
                 _releaseReply ($in);
             }
   } // sub
+  
+  public float decimalABinario(float a){
+    org.omg.CORBA.portable.InputStream $in = null;
+    try{
+      org.omg.CORBA.portable.OutputStream $out = _request ("decimalABinario", true);
+      $out.write_float (a);
+      $in = _invoke ($out);
+                float $result = $in.read_float ();
+                return $result;
+      } catch (org.omg.CORBA.portable.ApplicationException $ex) {
+                $in = $ex.getInputStream ();
+                String _id = $ex.getId ();
+                throw new org.omg.CORBA.MARSHAL (_id);
+      } catch(org.omg.CORBA.portable.RemarshalException $rm){
+      return decimalABinario(a);
+      } finally{
+        _releaseReply ($in);
+      }
+  } //decimalABinario
 
   // Type-specific CORBA::Object operations
   private static String[] __ids = {
