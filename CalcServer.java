@@ -34,6 +34,22 @@ class CalcImpl extends CalcPOA {
     public float sub(float a, float b) {
         return a - b;
     }
+    
+    @Override
+    public float decimalABinario(float a){
+        int digito, exp;
+        float binario;
+        exp = 0;
+        binario = 0;
+        while(a != 0){
+            digito = a % 2;
+            binario = binario + digito * Math.pow(10, exp);
+            exp++;
+            a = a / 2;
+        }
+        return binario;
+    }
+    
     private ORB orb;
 
     public void setORB(ORB orb_val) {
