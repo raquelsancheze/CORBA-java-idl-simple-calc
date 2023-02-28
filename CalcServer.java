@@ -9,7 +9,7 @@ import org.omg.PortableServer.*;
 
 import java.util.Properties;
 
-class CalcImpl extends CalcPOA {
+class CalcImpl extends CalcPOA { //Se implementan las distintas operaciones que realiza nuestra calculadora
 
     @Override
     public float sum(float a, float b) {
@@ -36,18 +36,11 @@ class CalcImpl extends CalcPOA {
     }
     
     @Override
-    public float decimalABinario(float a){
-        float digito, exp;
-        float binario;
-        exp = 0;
-        binario = 0;
-        while(a != 0){
-            digito = a % 2;
-            binario = (float)binario + (float)digito * (float)Math.pow(10, exp);
-            exp++;
-            a = a / 2;
-        }
-        return binario;
+    public float decimalABinario(float a){ //He anadido la funcionalidad de pasar un numero decimal a binario
+        Integer decimalInteger = Math.round(a);
+        String resultado = Integer.toBinaryString(decimalInteger);
+        Float resultadoFloat = Float.valueOf(resultado);
+        return resultadoFloat;
     }
     
     private ORB orb;
